@@ -13,6 +13,12 @@ public class Post {
     public Post() {
     }
 
+    public Post(String title, String link, LocalDateTime created) {
+        this.title = title;
+        this.link = link;
+        this.created = created;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
