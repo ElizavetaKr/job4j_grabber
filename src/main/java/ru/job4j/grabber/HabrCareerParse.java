@@ -29,6 +29,34 @@ public class HabrCareerParse {
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
                 System.out.printf("%s %s %s %n", vacancyName, link, vacancyData);
             });
+
         }
+    }
+
+    private String retrieveDescription(String link) throws IOException {
+        StringBuilder description = new StringBuilder();
+        Connection connection = Jsoup.connect(link);
+        Document document = connection.get();
+        Elements rows = document.select(".vacancy-description__text");
+        rows.forEach(
+                row -> {
+                    Element aboutCompanyHeading = row.child(0);
+                    description.append(aboutCompanyHeading.text() + "\n");
+                    Element aboutCompany = row.child(1);
+                    description.append(aboutCompany.text() + "\n");
+
+                    Element expectationsHeading = row.child(2);
+                    description.append(expectationsHeading.text() + "\n");
+                    Element expectations = row.child(3);
+                    description.append(expectations.text() + "\n");
+
+                    Element conditionsHeading = row.child(4);
+                    description.append(conditionsHeading.text() + "\n");
+                    Element conditions = row.child(5);
+                    description.append(conditions.text() + "\n");
+
+                });
+
+        return description.toString();
     }
 }
