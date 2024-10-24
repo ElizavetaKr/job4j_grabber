@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Post {
     private int id;
     private String title;
-    private String link;
     private String description;
+    private String link;
     private LocalDateTime created;
 
     public Post() {
@@ -19,11 +19,11 @@ public class Post {
         this.created = created;
     }
 
-    public Post(int id, String title, String link, String description, LocalDateTime created) {
+    public Post(int id, String title, String description, String link, LocalDateTime created) {
         this.id = id;
         this.title = title;
-        this.link = link;
         this.description = description;
+        this.link = link;
         this.created = created;
     }
 

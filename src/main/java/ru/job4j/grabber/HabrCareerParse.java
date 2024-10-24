@@ -49,7 +49,6 @@ public class HabrCareerParse implements Parse {
                     description.append(expectationsHeading.text() + "\n");
                     Element expectations = row.child(3);
                     description.append(expectations.text() + "\n");
-
                     Element conditionsHeading = row.child(4);
                     description.append(conditionsHeading.text() + "\n");
                     Element conditions = row.child(5);
