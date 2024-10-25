@@ -23,16 +23,6 @@ public class HabrCareerParse implements Parse {
         this.dateTimeParser = dateTimeParser;
     }
 
-    public static void main(String[] args) throws IOException {
-        HabrCareerDateTimeParser parser = new HabrCareerDateTimeParser();
-        HabrCareerParse habrCareerParse = new HabrCareerParse(parser);
-        for (int pageNumber = 1; pageNumber <= PAGES; pageNumber++) {
-            String fullLink = "%s%s%d%s".formatted(SOURCE_LINK, PREFIX, pageNumber, SUFFIX);
-            List<Post> list = habrCareerParse.list(fullLink);
-            System.out.println(list + "\n");
-        }
-    }
-
     private String retrieveDescription(String link) throws IOException {
         StringBuilder description = new StringBuilder();
         Connection connection = Jsoup.connect(link);
@@ -49,6 +39,7 @@ public class HabrCareerParse implements Parse {
                     description.append(expectationsHeading.text() + "\n");
                     Element expectations = row.child(3);
                     description.append(expectations.text() + "\n");
+
                     Element conditionsHeading = row.child(4);
                     description.append(conditionsHeading.text() + "\n");
                     Element conditions = row.child(5);
